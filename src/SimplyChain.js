@@ -24,7 +24,7 @@ class SimplyChain{
 
 	/**
 	 * Get the recent/last block in the chain
-	 * @returns {SimplyBlock}
+	 * @type {SimplyBlock}
 	 */
 	get lastBlock(){
 		return this._lastblock;
@@ -32,7 +32,7 @@ class SimplyChain{
 
 	/**
 	 * Get the length of the chain
-	 * @returns {number}
+	 * @type {number}
 	 */
 	get length(){
 		return this._length;
@@ -40,7 +40,7 @@ class SimplyChain{
 
 	/**
 	 * Get the block pending to be added in chain 
-	 * return {?SimplyBlock}
+	 * @type {?SimplyBlock}
 	 */
 	get pendingBlock(){
 		// if not pendingblock and have transaction
@@ -51,7 +51,7 @@ class SimplyChain{
 
 	/**
 	 * Get the complete chain
-	 * @returns {object.<string, SimplyBlock>}
+	 * @type {object.<string, SimplyBlock>}
 	 */
 	get theChain(){
 		return this._chain;
