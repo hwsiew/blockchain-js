@@ -1,0 +1,18 @@
+{
+  "name": "simplychain",
+  "version": "1.0.0",
+  "description": "Blockchain proof of concept using Javasciprt",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.3"
+  }
+}
