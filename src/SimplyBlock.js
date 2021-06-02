@@ -3,10 +3,10 @@ const SHA256 = require('crypto-js/sha256');
 class SimplyBlock{
 	/**
 	 * Create a block
-	 * @param {number} index 
-	 * @param {number} timestamp 
-	 * @param {object} data 
-	 * @param {string} previous_hash 
+	 * @param {number} index 0-based index of the block 
+	 * @param {number} timestamp timestamp of the block
+	 * @param {*} data data to be added to the block
+	 * @param {string} previous_hash hash of the previous block
 	 */
 	constructor(index, timestamp, data, previous_hash = null){
 		this._index = index;
@@ -18,9 +18,12 @@ class SimplyBlock{
 	}
 
 	/**
-	 * @param {number} value - positive value
-	 * @throws Invalid nonce value if value is not a number or < 0
+	 * @type {number} 
 	 */
+	get nonce(){
+		return this._nonce;
+	}
+
 	set nonce(value){
 		if(typeof value !== 'number' || value < 0)
 			throw 'Invalid nonce value';
@@ -28,12 +31,8 @@ class SimplyBlock{
 	}
 
 	/**
-	 * @returns {number} > 0
+	 * @type {?string} 
 	 */
-	get nonce(){
-		return this._nonce;
-	}
-
 	get previousHash(){
 		return this._previous_hash;
 	}
@@ -42,6 +41,9 @@ class SimplyBlock{
 		this._previous_hash = value;
 	}
 
+	/**
+	 * @type {number}
+	 */
 	get difficulty(){
 		return this._difficulty;
 	}
@@ -90,8 +92,8 @@ class SimplyBlock{
 
 	/**
 	 * Mine the block synchronously
-	 * @param {?function} callback 
-	 * @returns {number} the nonce
+	 * @param {function} callback optional callback when successfully mined
+	 * @returns {number} the nonce of the block
 	 */
 	mineSync(callback = null){
 		while(this.hash().substring(0,this._difficulty) !== Array(this._difficulty).fill('0').join('')){
