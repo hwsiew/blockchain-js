@@ -4,6 +4,7 @@
   "description": "Blockchain proof of concept using Javasciprt",
   "main": "index.js",
   "scripts": {
+    "doc": "npx jsdoc src/SimplyBlock.js src/SimplyChain.js -d doc/",
     "test": "jest"
   },
   "keywords": [],
