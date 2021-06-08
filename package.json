@@ -7,7 +7,9 @@
     "doc": "npx jsdoc src/SimplyBlock.js src/SimplyChain.js -d doc/",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "blockchain"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
