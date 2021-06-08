@@ -1,6 +1,6 @@
 {
   "name": "simplychain",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Blockchain proof of concept using Javasciprt",
   "main": "index.js",
   "scripts": {
