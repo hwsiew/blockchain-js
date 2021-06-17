@@ -1,6 +1,6 @@
 const { SimplyBlock } = require('./SimplyBlock');
 const { it, expect } = require('@jest/globals');
-const SHA256 = require('crypto-js/sha256');
+const crypto = require('crypto');
 
 it('should hash correctly using SHA256.', function(){
 
@@ -17,7 +17,8 @@ it('should hash correctly using SHA256.', function(){
 
 	let block = new SimplyBlock(index,timestamp,data,previous_hash);
 
-	expect(block.hash()).toEqual(SHA256(message).toString());
+	let hash = crypto.createHash('sha256').update(message).digest('hex');
+	expect(block.hash()).toEqual(hash);
 
 });
 

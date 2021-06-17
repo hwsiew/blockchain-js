@@ -1,4 +1,10 @@
-const SHA256 = require('crypto-js/sha256');
+let crypto;
+
+try {
+	crypto = require('crypto');
+} catch (err) {
+	console.error('Please enabled crypto support!')
+}
 
 class SimplyBlock{
 	/**
@@ -66,7 +72,8 @@ class SimplyBlock{
 		message += this._previous_hash;
 		message += this._nonce;
 
-		return SHA256(message).toString();
+		return crypto.createHash('sha256').update(message).digest('hex');
+		// return SHA256(message).toString();
 
 	}
 
