@@ -1,14 +1,24 @@
-const {SimplyBlock} = require('./SimplyBlock');
+import { SimplyBlock } from "./SimplyBlock";
 
-class SimplyChain{
+interface ChainObject {
+	[index: string]: Array<SimplyBlock>;
+}
+
+export class SimplyChain{
+
+	_chain: ChainObject;
+	_lastblock: SimplyBlock;
+	_length: number;
+	_difficulty: number;
+	_transactions: Array<any>;
+	_pendingBlock: SimplyBlock | undefined;
+
 	/**
 	 * Create SimplyChain
 	 */
-	constructor(){
+	 constructor(){
 		// the chain
 		this._chain = {};
-		// last block in the chain
-		this._lastblock = null;
 		// the length of the chain
 		this._length = 0;
 		// proof of work difficulty
@@ -19,14 +29,14 @@ class SimplyChain{
 		this._pendingBlock;
 
 		// initialize genesis block
-		this.createGenesisBlock();
+		this._lastblock = this.createGenesisBlock();
 	}
 
 	/**
 	 * Get the recent/last block in the chain
 	 * @type {SimplyBlock}
 	 */
-	get lastBlock(){
+	 get lastBlock(){
 		return this._lastblock;
 	}
 
@@ -60,19 +70,20 @@ class SimplyChain{
 	/**
 	 * Create the first block of the chain
 	 */
-	createGenesisBlock(){
+	createGenesisBlock() : SimplyBlock{
 		let index = 0;
 		let timestamp = (new Date()).getTime();
-		let data = 'Genesis block for the SimplyChain';
+		let data = ['Genesis block for the SimplyChain'];
 		let previous_hash = '0';
 
-		let block = new SimplyBlock(index,timestamp,data,previous_hash);
+		let block = new SimplyBlock(index, timestamp, data, previous_hash);
 		block.mineSync();
 		let hash  = block.hash();
 
 		this._chain[hash] = [block];
-		this._lastblock = block;
 		this._length++;
+
+		return block;
 	}
 
 	/**
@@ -80,7 +91,7 @@ class SimplyChain{
 	 * @param {number} proofOfWork
 	 * @throws Invalid block | Invalid proof of work
 	 */
-	addBlock(proofOfWork){
+	 addBlock(proofOfWork: number){
 
 		if(!this._pendingBlock) throw 'No block to be added!';
 
@@ -98,7 +109,7 @@ class SimplyChain{
 		this._chain[block_hash].push(block);
 		this._lastblock = block;
 		this._length++;
-		this._pendingBlock = null;
+		this._pendingBlock = undefined;
 
 	}
 
@@ -110,19 +121,20 @@ class SimplyChain{
 		let current = this._lastblock;
 		let previous = this._chain[current.previousHash];
 		let count = this._length - 1; // exclude genesis blcok
+		
 		while(previous){
 
-			previous = previous[0]; // todo: hash collition
+			let block = previous[0]; // todo: hash collition
 
 			let difficulty = current.difficulty;
 
 			if(current.hash().substring(0,difficulty) !== Array(difficulty).fill('0').join('')) 
 				return false;
 	
-			if(previous.hash() !== current.previousHash) 
+			if(block.hash() !== current.previousHash) 
 				return false;
 			
-			current  = previous;
+			current  = block;
 			previous = this._chain[current.previousHash];
  			count--;
 		}
@@ -134,7 +146,7 @@ class SimplyChain{
 	 * add a transaction to chain
 	 * @param {*} data 
 	 */
-	addTransaction(data){
+	addTransaction(data: any){
 		this._transactions.push(data);
 	}
 
@@ -148,16 +160,11 @@ class SimplyChain{
 		let timestamp = (new Date()).getTime();
 		let lastblock = this._lastblock;
 
-		this._pendingBlock = new SimplyBlock(index,timestamp,transactions,lastblock.hash());
+		this._pendingBlock = new SimplyBlock(index, timestamp, transactions, lastblock.hash());
 		this._pendingBlock.difficulty = this._difficulty;
 
 		// reset transactions
 		this._transactions = [];
 
 	}
-
 }
-
-module.exports = {
-	SimplyChain
-};

@@ -1,4 +1,4 @@
-const { SimplyBlock } = require('./SimplyBlock');
+const { SimplyBlock }  = require('../dist/cjs/SimplyBlock');
 const { it, expect } = require('@jest/globals');
 const crypto = require('crypto');
 
