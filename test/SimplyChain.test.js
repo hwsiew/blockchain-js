@@ -1,4 +1,4 @@
-const { SimplyChain } = require('./SimplyChain');
+const { SimplyChain } = require('../dist/cjs/SimplyChain');
 const { it, expect } = require('@jest/globals');
 
 it('should initialize genesis block',function(){
