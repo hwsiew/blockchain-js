@@ -1,6 +1,6 @@
 {
   "name": "simplychain",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Blockchain proof of concept using Javasciprt",
   "main": "./dist/cjs/SimplyChain.js",
   "module": "./dist/esm/SimplyChain.js",
