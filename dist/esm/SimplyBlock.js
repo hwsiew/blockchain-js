@@ -41,7 +41,7 @@ var SimplyBlock = /** @class */ (function () {
      * @param {number} index 0-based index of the block
      * @param {number} timestamp timestamp of the block
      * @param {*} data data to be added to the block
-     * @param {string = ''} previous_hash hash of the previous block
+     * @param {string} previous_hash hash of the previous block
      */
     function SimplyBlock(index, timestamp, data, previous_hash) {
         if (previous_hash === void 0) { previous_hash = ''; }
