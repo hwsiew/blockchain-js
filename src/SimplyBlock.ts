@@ -13,7 +13,7 @@ export class SimplyBlock {
 	 * @param {number} index 0-based index of the block 
 	 * @param {number} timestamp timestamp of the block
 	 * @param {*} data data to be added to the block
-	 * @param {string = ''} previous_hash hash of the previous block
+	 * @param {string} previous_hash hash of the previous block
 	 */
 	constructor(index: number, timestamp: number, data: Array<any>, previous_hash: string = ''){
 		this._index = index;

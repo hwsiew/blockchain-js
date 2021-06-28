@@ -1,6 +1,6 @@
 {
   "name": "simplychain",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Blockchain proof of concept using Javasciprt",
   "main": "./dist/cjs/SimplyChain.js",
   "module": "./dist/esm/SimplyChain.js",
@@ -8,8 +8,8 @@
     "dist/"
   ],
   "scripts": {
-    "doc": "npx jsdoc src/SimplyBlock.js src/SimplyChain.js -d doc/",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
+    "postbuild": "typedoc src/SimplyBlock.ts src/SimplyChain.ts",
     "prepublishOnly": "npm run build",
     "pretest": "npm run build",
     "test": "jest ./test"
@@ -21,7 +21,7 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.0.3",
-    "jsdoc": "^3.6.7",
+    "typedoc": "^0.21.2",
     "typescript": "^4.3.4"
   },
   "repository": {
