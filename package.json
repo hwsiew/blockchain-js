@@ -1,9 +1,10 @@
 {
   "name": "simplychain",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Blockchain proof of concept using Javasciprt",
   "main": "./dist/cjs/SimplyChain.js",
   "module": "./dist/esm/SimplyChain.js",
+  "homepage": "https://hwsiew.github.io/blockchain-js/",
   "files": [
     "dist/"
   ],
@@ -17,7 +18,10 @@
   "keywords": [
     "blockchain"
   ],
-  "author": "",
+  "author": {
+    "name": "Hong Wei, Siew",
+    "email": "hw.siew.work@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "jest": "^27.0.3",
