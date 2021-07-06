@@ -1,5 +1,7 @@
 # Blockchain in Javascript
 
+![npm](https://img.shields.io/npm/v/simplychain)
+
 The blockchain implementation using javascript.
 
 ## Installation
